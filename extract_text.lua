@@ -1,16 +1,23 @@
 function extract_text(start_str, end_str, str) --this function will extract a text between to given trings
-	start_match, end_match = str:find(start_str, 0, true)
-	e_match = end_match + 1
-
-	start_match, end_match = str:find(end_str, e_match, true)
-	s_match = start_match
-
-	s_match = s_match - 1
-
-	if s_match ~= nil and e_match ~= nil then
-		extracted_string = str:sub(e_match, s_match) 	
-	else
+	local _ , _end = str:find(start_str, 0, true)
+	
+	if( _end == nil) then
 		return "error"
 	end
-	return extracted_string 
+
+	start_extracted_string = _end + 1
+
+	
+
+	local start, _ = str:find(end_str, start_extracted_string, true)
+
+	if( start == nil) then
+		return "error"
+	end
+
+	end_extracted_string = start - 1
+
+
+	return str:sub(start_extracted_string, end_extracted_string) 	
+
 end
