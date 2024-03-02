@@ -1,23 +1,28 @@
-function extract_text(start_str, end_str, str) --this function will extract a text between to given trings
-	local _ , _end = str:find(start_str, 0, true)
-	
+function Extract_text(str, start_str, end_str, start_search) --this function will extract a text between to given trings
+
+  local index
+
+  if type(start_search) == "number" then
+    index = start_search
+  else
+    index = 1
+  end
+
+
+	local _ , _end = str:find(start_str, index, true)
 	if( _end == nil) then
-		return "error"
+		return nil
 	end
+	 local start_index = _end + 1
 
-	start_extracted_string = _end + 1
 
-	
-
-	local start, _ = str:find(end_str, start_extracted_string, true)
-
+	local start, index_after = str:find(end_str, start_index, true)
 	if( start == nil) then
-		return "error"
+		return nil
 	end
+	local end_index = start - 1
 
-	end_extracted_string = start - 1
 
-
-	return str:sub(start_extracted_string, end_extracted_string) 	
+	return str:sub(start_index, end_index), index_after
 
 end
