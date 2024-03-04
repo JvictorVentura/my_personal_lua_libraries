@@ -1,2 +1,2 @@
 # my_personal_lua_libraries
-lua libraries that i reuse a lot.
+lua code that i caught myself reusing a lot.
